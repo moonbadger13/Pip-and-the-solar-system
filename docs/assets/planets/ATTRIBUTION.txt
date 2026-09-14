@@ -1,0 +1,5 @@
+Planet textures by Solar System Scope (https://www.solarsystemscope.com/textures/), licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/).
+
+Downloaded original images from Wikimedia Commons mirror; no pixel edits.
+
+Planet maps are equirectangular. Colors are artist-tuned from NASA imagery, with fictional fill for gaps; appropriate for an illustrative game. Earth clouds are grayscale JPG; use luminance as alpha on a white material. Saturn ring PNG is a radial profile, not a rectangular planet map; map x coordinate to ring radius. No 1K originals listed.
