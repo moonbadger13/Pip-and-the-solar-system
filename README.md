@@ -88,3 +88,14 @@ Three.js 0.180.0 is vendored under the MIT license in `dist/vendor/THREE-LICENSE
 - Game-only pinch/wheel zoom; page zoom and accidental post-pinch movement prevented.
 
 The automated suite covers 1,000 navigation/physics regressions plus scenes, input and asset checks. A cloud browser could not create a WebGL context, so no claim of real-iPad or full 3D visual playtesting is made.
+
+## Version 2.2
+
+- Pip follows at a proportional speed with eased movement animation and orientation. Character self-shadows are disabled to reduce moving surface shimmer; ground shadows remain.
+- Cloud-station floors have separated depth layers and trim no longer produces tiny unstable shadows.
+- Optional **Crystal Sprint**: five minutes of active play, 10 points per delivered crystal and a one-time 20-point bonus for each delivered colour. Bronze, Silver and Gold targets are 150, 400 and 800 points.
+- **Quiz ⚡**: 16 space and Scratch questions. Each correct answer adds 25 percentage points to suit, rover and rocket supplies (capped at 100), plus 5 supply credits. Five newly collected crystals unlock the next question; sprint rounds allow four attempts.
+- Questions and menus pause gameplay and the sprint clock. Closing an unanswered card preserves it. Repeated taps cannot award twice.
+- Sprint rounds begin with equal default gear on Mars and preserve the player's exploration session. The best score is stored only in this browser on this device, without names or accounts. It is a turn-taking classroom challenge, not an online leaderboard.
+
+The 2.2 checks include navigation, joystick/pinch input, actual Three.js scene construction, follower movement, question rewards, score boundaries, and UI callbacks with a simulated DOM and renderer. These tests do not establish live-browser rendering or real-iPad visual quality. The development browser environment was unavailable during this update; visual playtesting remains outstanding.
