@@ -49,3 +49,52 @@ button{min-height:44px}
   .zoom-controls{bottom:222px;right:12px}.zoom-controls button{padding:8px;min-width:37px;font-size:12px}
   .air-panel{max-height:calc(100dvh - 420px)}
 }
+
+/* Mission tools remain beside the cargo panel and outside the touch controls. */
+.mission-tools{position:absolute;left:26px;top:390px;width:235px;padding:8px}
+.mission-tool-buttons{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.mission-tool-buttons button{font-size:13px;padding:8px 6px;border-radius:11px}
+#quizBtn{background:#215653;color:#c6ffee;border-color:#8cf5dc55}
+#sprintBtn{background:#47364f;color:#ffe6a7;border-color:#efbd6755}
+#sprintHud{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px 8px 4px}
+#sprintHud[hidden]{display:none}
+#sprintHud span{display:block;color:#aecad9;font-size:9px;font-weight:800;letter-spacing:1.4px}
+#sprintHud b{display:block;color:#a1ffe2;font-size:26px}
+#sprintHud small{grid-column:1/-1;color:#d1e6ef;font-size:11px}
+#sprintHud.urgent #sprintTime{color:#ffc477}
+.quiz-modal h2{margin-top:18px;font-size:29px;line-height:1.25}
+.quiz-answers{display:grid;gap:12px}
+.quiz-answers button{text-align:left;background:#1a3049;font-size:17px;padding:16px 20px;min-height:60px}
+.quiz-answers button:hover:enabled{background:#294963}
+.quiz-answers button:disabled{opacity:.7}
+.quiz-answers button.correct{background:#235b50;border-color:#91efd3;opacity:1}
+.quiz-feedback{padding:16px;border-radius:14px;background:#2b3651;border:1px solid #a3bada55;line-height:1.65;margin-top:18px;color:#edf6ff}
+.quiz-feedback.success{background:#19453c;border-color:#9ff5d466}
+.quiz-feedback[hidden]{display:none}
+.modal .small-print{font-size:13px;color:#b9cede}
+.sprint-rules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}
+.sprint-rules>div{padding:18px;border-radius:17px;background:#1c3348}
+.sprint-rules b{display:block;font-size:36px;color:#afffe5}
+.sprint-rules span{font-size:14px;line-height:1.5;color:#d3e8f0}
+.medal-targets{display:flex;gap:9px;flex-wrap:wrap}
+.medal-targets span{padding:8px 11px;background:#3b3030;border-radius:10px;color:#f1c49e;font-weight:700;font-size:13px}
+.medal-targets span:nth-child(2){background:#303e50;color:#e0edff}
+.medal-targets span:nth-child(3){background:#49432b;color:#ffe7a0}
+.modal .local-best{color:#b7ffdf;font-weight:700}
+.results-modal{text-align:center;background:radial-gradient(ellipse at 50% 0,#255363,#101d32 70%)}
+.results-modal h2{max-width:none}
+.results-modal footer{justify-content:center}
+.result-gem{font-size:88px;line-height:1.15;color:#8cf5dc;text-shadow:0 0 45px #8cf5dc88;animation:gem-arrival .75s ease-out}
+.result-gem[data-medal=bronze]{color:#ebb17e}
+.result-gem[data-medal=silver]{color:#dcecff}
+.result-gem[data-medal=gold]{color:#ffe08b;text-shadow:0 0 45px #ffe08baa}
+.result-score b{display:block;font-size:76px;line-height:1.15;letter-spacing:-3px}
+.result-score span{font-size:12px;letter-spacing:4px;color:#b3d9dd}
+@keyframes gem-arrival{from{transform:translateY(20px) scale(.6);opacity:0}to{transform:translateY(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.result-gem{animation:none}.toast{transition:none}}
+@media(max-width:900px){.mission-tools{left:14px;top:363px;width:212px}}
+@media(max-width:700px){.passport{display:none}.mission-tools{left:14px;top:242px;width:181px}.mission-tool-buttons button{font-size:12px}.toast{top:190px;max-width:92%;width:max-content;font-size:13px;padding:9px 16px}.quiz-modal h2{font-size:25px}}
+@media(any-pointer:coarse){.mission-tools{top:366px}.toast{top:195px}}
+@media(any-pointer:coarse) and (max-width:600px){.mission-tools{top:238px;left:12px;width:175px}#sprintHud b{font-size:23px}.sprint-rules>div{padding:13px}.quiz-answers button{font-size:16px}}
+@media(max-height:650px) and (min-width:701px){.mission-tools{top:80px;left:50%;transform:translateX(-50%);width:220px}#sprintHud{padding-top:8px}#sprintHud b{font-size:23px}.toast{top:210px}}
+@media(max-height:500px) and (max-width:700px){.mission-tools{top:76px;left:50%;transform:translateX(-50%);width:177px}.score{min-width:148px;padding:8px}.score progress{width:54px}.location{max-width:132px}#sprintHud b{font-size:20px}.toast{top:225px}.modal-wrap{padding:12px}}

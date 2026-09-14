@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.min.js';
-import {PLANETS,RADIUS,SPAWN,SPAWN_BASIS,heightFor,seedRandom,advance,basis,PLATFORMS} from './core.mjs?v=2.1.0';
-import {mat,mesh,box,sphere,cylinder,white,dark,silver,orange,glow} from './models.js?v=2.1.0';
+import {PLANETS,RADIUS,SPAWN,SPAWN_BASIS,heightFor,seedRandom,advance,basis,PLATFORMS} from './core.mjs?v=2.2.0';
+import {mat,mesh,box,sphere,cylinder,white,dark,silver,orange,glow} from './models.js?v=2.2.0';
 export const textures={};let earthPixels=null;
 const textureFiles={mercury:'2k_mercury.jpg',venus:'2k_venus_surface.jpg',venusClouds:'2k_venus_atmosphere.jpg',earth:'2k_earth_daymap.jpg',earthClouds:'2k_earth_clouds.jpg',mars:'2k_mars.jpg',jupiter:'2k_jupiter.jpg',saturn:'2k_saturn.jpg',uranus:'2k_uranus.jpg',neptune:'2k_neptune.jpg',rings:'2k_saturn_ring_alpha.png'};
 export async function loadTextures(onProgress){let completed=0;const loader=new THREE.TextureLoader();await Promise.all(Object.entries(textureFiles).map(async([key,file])=>{const t=await loader.loadAsync('./assets/planets/'+file);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;textures[key]=t;onProgress?.(++completed,Object.keys(textureFiles).length);}));textures.earth.wrapS=THREE.RepeatWrapping;textures.earth.offset.x=.30;textures.earthClouds.wrapS=THREE.RepeatWrapping;textures.earthClouds.offset.x=.30;try{const c=document.createElement('canvas');c.width=512;c.height=256;const x=c.getContext('2d',{willReadFrequently:true});x.drawImage(textures.earth.image,0,0,512,256);earthPixels=x.getImageData(0,0,512,256).data;}catch{}}
@@ -56,9 +56,9 @@ if(!p.solid){
   for(const platform of PLATFORMS){
     const {x,z,w,d,id,links}=platform,pod=new THREE.Group();pod.position.copy(platformPoint(x,z));orient(pod,SPAWN,SPAWN_BASIS.back);deck.add(pod);
     // The top face is exactly y=0, matching the walk and jump collision plane.
-    box(pod,deckMat,w,.9,d,0,-.45,0);box(pod,floorMat,w-.4,.025,d-.4,0,-.013,0);
-    for(let a=-w/2+4;a<w/2;a+=4)box(pod,dark,.055,.018,d-.8,a,.008,0);
-    for(let a=-d/2+4;a<d/2;a+=4)box(pod,dark,w-.8,.018,.055,0,.009,a);
+    const base=box(pod,deckMat,w,.9,d,0,-.55,0);base.name='platform-base';const floor=box(pod,floorMat,w-.4,.08,d-.4,0,-.04,0);floor.name='walkable-floor';floor.castShadow=false;
+    for(let a=-w/2+4;a<w/2;a+=4)box(pod,dark,.055,.018,d-.8,a,.028,0);
+    for(let a=-d/2+4;a<d/2;a+=4)box(pod,dark,w-.8,.018,.055,0,.029,a);
     for(const side of[-1,1]){
       box(pod,accent,.18,.08,d-.6,side*(w/2-.3),.07,0);box(pod,accent,w-.6,.08,.18,0,.07,side*(d/2-.3));
       // Corner rails leave the middle open as a clear launch/landing lane.
@@ -74,6 +74,8 @@ if(!p.solid){
       // Small strips point to the next island without drawing a false bridge.
       for(let n=0;n<3;n++)box(pod,accent,dx?1:4,.035,dz?1:4,dx*(w/2-2.5-n*1.6),.06,dz*(d/2-2.5-n*1.6));
     }
+    // Fine rails and floor markings do not cast or receive unstable tiny shadows.
+    pod.traverse(o=>{if(o.isMesh){o.castShadow=false;o.receiveShadow=o===floor;}});
   }
 }
 const rng=seedRandom(index*125+626),rocks=[];

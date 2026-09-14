@@ -62,7 +62,11 @@ test('Every gas island orientation and top plane match collision',()=>{
       const p=PLATFORMS[i],pod=s.deck.children[i];for(const [x,z]of[[0,0],[p.w/2,0],[0,p.d/2],[-p.w/2,-p.d/2]]){
         const actual=pod.localToWorld(new THREE.Vector3(x,0,z)),expected=platformPoint(p.x+x,p.z+z);near(actual.distanceTo(expected),0,1e-6);
       }
-      const upperFace=pod.children[0].position.y+pod.children[0].geometry.parameters.height/2;near(upperFace,0);
+      const floor=pod.getObjectByName('walkable-floor'),base=pod.getObjectByName('platform-base');
+      assert(floor&&base,'Platform exposes its visible floor and lower support');
+      const upperFace=floor.position.y+floor.geometry.parameters.height/2;near(upperFace,0);
+      const floorBottom=floor.position.y-floor.geometry.parameters.height/2,baseTop=base.position.y+base.geometry.parameters.height/2;
+      assert(floorBottom-baseTop>=.015,'Separated surfaces must not depth-fight');
       assert.equal(platformAt(p.x,p.z)?.id,i);
     }
     for(const c of game.crystals){assert.ok(platformAt(c.x,c.z));near(pointFor(game,c).dot(new THREE.Vector3(...SPAWN)),108,1e-6);}
