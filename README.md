@@ -19,9 +19,9 @@ No ChatGPT account or game sign-in is required. The game makes no external API r
 - **Mouse wheel / + / −:** smoothly zoom from ground level to a whole planet.
 - **Right-drag:** rotate the view. **Ground / Globe:** jump between camera views. **Spin:** turn whole-planet rotation on/off.
 - **Left-click:** move to a surface point, or select a destination in space.
-- Touch devices have movement buttons, camera drag and pinch zoom.
+- Touch devices have an analogue joystick: push a little to walk, fully to run. Use Jump with the other thumb. Drag the scene to turn and pinch to zoom the planet. Page zoom is disabled during the game.
 
-Start on Mars. Press **Ground** to meet Pip and collect Aqua crystals. Use the rocket and the solar-system map to choose another world. A course reaches the planet's arrival zone; press **E** to land. Deliver crystals to the mothership for supply credits, a larger bag and a collection magnet.
+Start on Mars. Press **Ground** to meet Pip and collect Aqua crystals. Use the rocket and the solar-system map to choose another world. Autopilot completes the entire journey: it leaves the rover, returns to the rocket, launches, avoids the Sun and planets, and lands or docks automatically. Move manually or use **Stop autopilot** to take over. Deliver crystals to the mothership for supply credits, a larger bag and a collection magnet.
 
 Progress lasts for the current page session. Refreshing starts a new expedition.
 
@@ -38,7 +38,7 @@ Progress lasts for the current page session. Refreshing starts a new expedition.
 | Uranus | Mint | Fictional cloud station above pale blue-green haze |
 | Neptune | Sapphire | Fictional cloud station above blue-green clouds |
 
-The rocky worlds are continuous spherical play spaces, so there is no rectangular world edge. Giant planets have no solid surface: walking and driving happen on visibly manufactured floating stations. Earth uses buoyant movement over water. Vehicles have emergency movement when fuel runs out and the pause menu can return you safely to your rocket.
+The rocky worlds are continuous spherical play spaces, so there is no rectangular world edge. Giant planets have no solid surface: walking and driving happen on visibly manufactured floating stations. Each giant has nine islands with lit jump lanes. Rovers brake at platform edges; walk and jump to explore the other islands. Pip follows the safe island paths, and a safety pack returns a fallen explorer to the last safe point without losing crystals. Earth uses buoyant movement over water. Vehicles have emergency movement when fuel runs out and the pause menu can return you safely to your rocket.
 
 ## Science and artistic licence
 
@@ -77,3 +77,14 @@ https://creativecommons.org/licenses/by/4.0/
 Original texture files are unchanged. The game applies lighting, Neptune colour correction, and a rotated Earth longitude to place its landing zone on land. Source/mirror links and checksums are in `texture-sources.json`. Title illustration is AI-generated. Live characters, vehicles and stations are articulated Three.js game models.
 
 Three.js 0.180.0 is vendored under the MIT license in `dist/vendor/THREE-LICENSE.txt`.
+
+## Version 2.1
+
+- Analogue tablet joystick, simultaneous jump/camera controls, stable pinch gestures and safe-area layouts.
+- Complete, cancellable autopilot with automatic arrival and obstacle-clear flight paths.
+- Nine cloud islands per gas/ice giant, reachable jump gaps, rover edge brakes and safe fall recovery.
+- Earth close-up material detail, smooth water, and preserved whole-globe geography.
+- Instanced rocks and crystals, lower tablet shadow cost and instance-buffer cleanup on planet changes.
+- Game-only pinch/wheel zoom; page zoom and accidental post-pinch movement prevented.
+
+The automated suite covers 1,000 navigation/physics regressions plus scenes, input and asset checks. A cloud browser could not create a WebGL context, so no claim of real-iPad or full 3D visual playtesting is made.

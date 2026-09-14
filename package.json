@@ -1,1 +1,9 @@
-{"name":"pip-and-the-solar-system","version":"2.0.0","private":true,"type":"module","scripts":{"test":"node tests/mechanics.mjs && node tests/scenes.mjs && node tests/assets.mjs"}}
+{
+  "name": "pip-and-the-solar-system",
+  "version": "2.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/mechanics.mjs && node tests/regressions.mjs && node tests/input.mjs && node tests/scenes.mjs && node tests/assets.mjs"
+  }
+}
