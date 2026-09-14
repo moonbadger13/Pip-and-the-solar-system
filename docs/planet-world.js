@@ -56,7 +56,7 @@ if(!p.solid){
   for(const platform of PLATFORMS){
     const {x,z,w,d,id,links}=platform,pod=new THREE.Group();pod.position.copy(platformPoint(x,z));orient(pod,SPAWN,SPAWN_BASIS.back);deck.add(pod);
     // The top face is exactly y=0, matching the walk and jump collision plane.
-    box(pod,deckMat,w,.9,d,0,-.55,0);const floor=box(pod,floorMat,w-.4,.08,d-.4,0,-.04,0);floor.castShadow=false;
+    const base=box(pod,deckMat,w,.9,d,0,-.55,0);base.name='platform-base';const floor=box(pod,floorMat,w-.4,.08,d-.4,0,-.04,0);floor.name='walkable-floor';floor.castShadow=false;
     for(let a=-w/2+4;a<w/2;a+=4)box(pod,dark,.055,.018,d-.8,a,.028,0);
     for(let a=-d/2+4;a<d/2;a+=4)box(pod,dark,w-.8,.018,.055,0,.029,a);
     for(const side of[-1,1]){
